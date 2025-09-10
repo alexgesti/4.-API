@@ -1,2 +1,2 @@
-export declare function hello(who?: string): string;
+export {};
 //# sourceMappingURL=index.d.ts.map

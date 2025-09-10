@@ -1,5 +1,25 @@
 {
   "devDependencies": {
     "typescript": "^5.9.2"
-  }
+  },
+  "name": "4.-api",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Este proyecto tiene como objetivo practicar el desarrollo guiado por tests (TDD) en JavaScript, trabajando con un conjunto de películas. Se ha realizado la creacion de funciones específicas para manipular, filtrar, calcular y transformar datos de películas, garantizando que todas pasen los tests definidos con Jest.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexgesti/4.-API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "types": "./index.d.ts",
+  "bugs": {
+    "url": "https://github.com/alexgesti/4.-API/issues"
+  },
+  "homepage": "https://github.com/alexgesti/4.-API#readme"
 }
