@@ -6,6 +6,12 @@ interface Joke {
 const button = document.getElementById("jokeBtn");
 const jokeContainer = document.getElementById("jokeSpace");
 
+const reportJokes: {
+  joke: string;
+  score: number | null;
+  date: string | null;
+}[] = [];
+
 async function fetchJoke() {
   console.log("Pidiendo chiste...");
   const response = await fetch("https://icanhazdadjoke.com/", {

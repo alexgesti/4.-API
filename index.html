@@ -12,7 +12,7 @@
     />
     <style>
       body {
-        background-image: url("");
+        background-image: url("https://github.com/alexgesti/4.-API/blob/main/Img/background_joke.png?raw=true");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -22,15 +22,53 @@
         align-items: center;
         justify-content: center;
       }
+
+      .joke-card {
+        background: radial-gradient(
+            circle,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0.15) 70%,
+            rgba(0, 0, 0, 0.43) 100%
+          ),
+          #170944;
+        color: #fff;
+        text-shadow: 0 0 2px #000, 0 0 6px #000;
+      }
+
+      .btn-primary {
+        background-color: #ffffff;
+        color: #170944;
+        text-shadow: 0 0 2px #000, 0 0 6px #000;
+      }
+
+      .btn-primary:active {
+        background-color: #170944;
+        color: #fff;
+        box-shadow: 0 0 10px #000 inset;
+      }
     </style>
   </head>
   <body>
     <div
-      class="d-flex flex-column align-items-center justify-content-center col-6 shadow-lg bg-white rounded-pill p-4 my-5 joke-card"
+      class="d-flex flex-column align-items-center justify-content-center col-6 shadow-lg rounded-pill p-4 my-5 joke-card"
     >
-      <h1 class="mb-5">Let's have some laughs!</h1>
-      <p id="jokeSpace" class="text-center">Here is the joke space</p>
-      <button id="jokeBtn" class="btn btn-primary rounded-pill mt-5">
+      <h1 class="mt-2 mb-3">Let's have some laughs!</h1>
+      <p id="jokeSpace" class="text-center my-2">Here is the joke space</p>
+      <div class="d-flex justify-content-center my-3">
+        <button class="btn btn-outline-danger mx-3 rounded-pill" id="score1">
+          <img
+            src="https://www.flaticon.com/free-icon/skull-anatomy_17291263?term=horror+angry&page=2&position=76&origin=search&related_id=17291263"
+            alt="Enfadado"
+          />
+        </button>
+        <button class="btn btn-outline-warning mx-3 rounded-pill" id="score2">
+          <i class="bi bi-emoji-neutral"></i>
+        </button>
+        <button class="btn btn-outline-success mx-3 rounded-pill" id="score3">
+          <i class="bi bi-emoji-laughing"></i>
+        </button>
+      </div>
+      <button id="jokeBtn" class="btn btn-primary rounded-pill my-2">
         LET'S HAVE MORE
       </button>
     </div>
