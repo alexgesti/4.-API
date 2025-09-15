@@ -4,6 +4,10 @@ interface Joke {
   joke: string;
 }
 
+type JokeApiResponse =
+  | { type: "single"; id: number; joke: string }
+  | { type: "twopart"; id: number; setup: string; delivery: string };
+
 const button = document.getElementById("jokeBtn");
 const jokeContainer = document.getElementById("jokeSpace");
 const scoreBtns = [
@@ -22,15 +26,26 @@ let currentJoke: Joke | null = null;
 let currentScore: number | null = null;
 
 async function fetchJoke() {
-  const response = await fetch("https://icanhazdadjoke.com/", {
-    headers: {
-      Accept: "application/json",
-    },
-  });
-  const data: Joke = await response.json();
-  currentJoke = data;
+  const categories = ["Dark", "Spooky"];
+
+  const randomCategory =
+    categories[Math.floor(Math.random() * categories.length)];
+
+  const response = await fetch(
+    `https://v2.jokeapi.dev/joke/${randomCategory}?lang=en`
+  );
+
+  const data: JokeApiResponse = await response.json();
+
+  currentJoke = {
+    id: String(data.id ?? Date.now()),
+    joke:
+      data.type == "single" ? data.joke : `${data.setup} - ${data.delivery}`,
+  };
+
   currentScore = null;
-  if (jokeContainer) jokeContainer.textContent = data.joke;
+  if (jokeContainer && currentJoke)
+    jokeContainer.textContent = currentJoke.joke;
 }
 
 function saveReport() {
@@ -76,14 +91,35 @@ async function fetchWeather() {
     const data = await response.json();
     const temp = data.current_weather.temperature;
     const wind = data.current_weather.windspeed;
+    const code = data.current_weather.weathercode;
+    const icon = getWeatherIcon(code);
     if (weatherDiv) {
-      weatherDiv.innerHTML = `Current temperature: ${temp}°C<br>Current wind speed: ${wind} km/h`;
+      weatherDiv.innerHTML = `
+        ${icon} <strong>${temp}°C</strong><br>
+        💨 ${wind} km/h
+      `;
     }
   } catch (error) {
     if (weatherDiv) {
       weatherDiv.textContent = "Failed to fetch weather data.";
     }
   }
+}
+
+function getWeatherIcon(code: number): string {
+  const icons = {
+    0: "☀️",
+    1: "🌤️",
+    2: "⛅",
+    3: "☁️",
+    45: "🌫️",
+    48: "🌫️",
+    51: "🌦️",
+    61: "🌧️",
+    71: "❄️",
+    95: "⛈️",
+  };
+  return icons[code as keyof typeof icons] || "❓";
 }
 
 fetchWeather();
