@@ -9,7 +9,7 @@ const reportJokes = [];
 let currentJoke = null;
 let currentScore = null;
 async function fetchJoke() {
-  const categories = ["Dark", "Spooky"];
+  const categories = ["Programming", "Spooky"];
   const randomCategory =
     categories[Math.floor(Math.random() * categories.length)];
   const response = await fetch(
@@ -93,4 +93,5 @@ function getWeatherIcon(code) {
   return icons[code] || "❓";
 }
 fetchWeather();
+export {};
 //# sourceMappingURL=index.js.map

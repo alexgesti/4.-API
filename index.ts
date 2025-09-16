@@ -26,7 +26,7 @@ let currentJoke: Joke | null = null;
 let currentScore: number | null = null;
 
 async function fetchJoke() {
-  const categories = ["Dark", "Spooky"];
+  const categories = ["Programming", "Spooky"];
 
   const randomCategory =
     categories[Math.floor(Math.random() * categories.length)];
