@@ -1,7 +1,5 @@
-/*Función fetchJoke (mockeando fetch)
-
-Que devuelva un chiste tipo single y lo guarde en currentJoke.*/
-
+// Función fetchJoke
+// Devuelve un chiste tipo single y lo guarda en currentJoke.
 function mockFetchJokeSingle() {
   return Promise.resolve({
     json: () =>
@@ -13,41 +11,22 @@ function mockFetchJokeSingle() {
   });
 }
 
-/*Que devuelva un chiste tipo twopart y lo junte con "setup - delivery".
- */
-
-function mockFetchJokeTwoPart() {
-  return Promise.resolve({
-    json: () =>
-      Promise.resolve({
-        id: 456,
-        type: "twopart",
-        setup: "Why do Java developers wear glasses?",
-        delivery: "Because they don't see sharp.",
-      }),
-  });
-}
-
-/*Que resetee currentScore a null después de traer un chiste.*/
-
+// Resetea currentScore a null después de introducir un chiste.
 function resetCurrentScore() {
   let currentScore = 2;
   currentScore = null;
   return currentScore;
 }
 
-//Que inserte correctamente el texto en jokeContainer.
-
+// Inserta correctamente el texto en jokeContainer.
 function insertJokeInContainer(joke) {
   const jokeContainer = { textContent: "" };
   jokeContainer.textContent = joke;
   return jokeContainer.textContent;
 }
 
-//Función saveReport
-
-//Que añada un nuevo chiste con score y date al array reportJokes.
-
+// Función saveReport
+// Añade un nuevo chiste con score y date al array reportJokes.
 function saveNewReport(reportJokes, currentJoke, currentScore) {
   const report = {
     joke: currentJoke.joke,
@@ -58,8 +37,7 @@ function saveNewReport(reportJokes, currentJoke, currentScore) {
   return reportJokes;
 }
 
-//Que si el chiste ya existe, actualice el score en vez de duplicarlo.
-
+// Si el chiste ya existe, actualice el score en vez de duplicarlo.
 function updateExistingReport(reportJokes, currentJoke, currentScore) {
   const idx = reportJokes.findIndex((r) => r.joke === currentJoke.joke);
   const report = {
@@ -75,8 +53,7 @@ function updateExistingReport(reportJokes, currentJoke, currentScore) {
   return reportJokes;
 }
 
-//Que si no hay currentScore, el date se guarde como null.
-
+// Si no hay currentScore, el date se guarde como null.
 function saveReportWithNullDate(reportJokes, currentJoke) {
   const currentScore = null;
   const report = {
@@ -88,18 +65,15 @@ function saveReportWithNullDate(reportJokes, currentJoke) {
   return reportJokes;
 }
 
-//Botones de puntuación
-
-//Que al hacer click en un botón, el currentScore cambie al valor correcto (1, 2 o 3).
-
+// Botones de puntuación
+// Al hacer click en un botón, el currentScore cambie al valor correcto (1, 2 o 3).
 function changeCurrentScoreOnClick(buttonIndex) {
   let currentScore = null;
   currentScore = buttonIndex + 1;
   return currentScore;
 }
 
-//Que tras puntuar se guarde en reportJokes.
-
+// Tras puntuar se guarde en reportJokes.
 function saveScoreOnClick(reportJokes, currentJoke, buttonIndex) {
   let currentScore = buttonIndex + 1;
   const report = {
@@ -111,3 +85,14 @@ function saveScoreOnClick(reportJokes, currentJoke, buttonIndex) {
   idx >= 0 ? (reportJokes[idx] = report) : reportJokes.push(report);
   return reportJokes;
 }
+
+module.exports = {
+  mockFetchJokeSingle,
+  resetCurrentScore,
+  insertJokeInContainer,
+  saveNewReport,
+  updateExistingReport,
+  saveReportWithNullDate,
+  changeCurrentScoreOnClick,
+  saveScoreOnClick,
+};
